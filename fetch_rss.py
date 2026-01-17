@@ -195,7 +195,11 @@ def fetch_feed(feed_url: str, session: requests.Session) -> List[Dict]:
                 article = extract_article_info(entry, feed_url)
                 articles.append(article)
             except Exception as e:
-                logging.error(f"記事抽出エラー: {e}")
+                entry_title = getattr(entry, "title", "N/A")
+                entry_link = getattr(entry, "link", "N/A")
+                logging.error(
+                    f"記事抽出エラー: feed_url={feed_url}, title={entry_title}, link={entry_link}, error={e}"
+                )
                 continue
 
         logging.info(f"✓ Fetched {len(articles)} articles from {feed_url}")
