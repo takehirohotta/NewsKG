@@ -40,8 +40,15 @@ def create_session() -> requests.Session:
     session = requests.Session()
 
     # User-Agentヘッダーを設定（403 Forbiddenエラー回避）
+    default_user_agent = getattr(
+        config,
+        "USER_AGENT",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome Safari/537.36",
+    )
     session.headers.update({
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        'User-Agent': default_user_agent
     })
 
     retry = Retry(
