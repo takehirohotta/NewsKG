@@ -138,7 +138,7 @@ def extract_article_info(entry: Dict, source_url: str) -> Dict:
     content_hash = calculate_content_hash(content_for_hash)
 
     # 記事IDを生成（URLベースのハッシュを使用）
-    url_hash = hashlib.md5(url.encode('utf-8')).hexdigest()[:8]
+    url_hash = hashlib.sha256(url.encode('utf-8')).hexdigest()[:8]
     article_id = f"nhk_{datetime.fromtimestamp(pub_date_unix, tz=timezone.utc).strftime('%Y%m%d')}_{url_hash}"
 
     return {
