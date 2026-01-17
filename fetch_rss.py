@@ -17,7 +17,7 @@ from dateutil import parser as date_parser
 from typing import List, Dict, Tuple
 import requests
 from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.util.retry import Retry
+from urllib3.util import Retry
 
 import config
 
