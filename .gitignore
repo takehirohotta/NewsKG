@@ -205,3 +205,12 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# NHK RSS取得モジュール固有
+articles.json
+articles_*.json
+fetch_rss.log
+fetch_rss_*.log
+test_*.xml
+config_test.py
+config_local_test.py
