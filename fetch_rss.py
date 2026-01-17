@@ -133,12 +133,18 @@ def extract_article_info(entry: Dict, source_url: str) -> Dict:
 
     # 本文を取得（contentがある場合はそちらを優先）
     content = ''
-    if 'content' in entry and len(entry.content) > 0:
-        content = entry.content[0].get('value', '').strip()
-    elif 'description' in entry:
-        content = entry.get('description', '').strip()
-    else:
-        content = summary
+    if 'content' in entry:
+        # feedparser では通常 entry.content はリストだが、型が異なる場合も安全に扱う
+        content_source = getattr(entry, 'content', entry.get('content'))
+        if isinstance(content_source, (list, tuple)) and len(content_source) > 0:
+            first_item = content_source[0]
+            if hasattr(first_item, 'get'):
+                content = first_item.get('value', '').strip()
+    if not content:
+        if 'description' in entry:
+            content = entry.get('description', '').strip()
+        else:
+            content = summary
 
     # コンテンツハッシュを計算
     content_for_hash = f"{title}{url}{content}"
