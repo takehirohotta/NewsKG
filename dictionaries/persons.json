@@ -1,0 +1,109 @@
+{
+  "persons": [
+    {
+      "id": "takaichi_sanae",
+      "label": "高市早苗",
+      "aliases": ["高市総理", "高市首相", "高市総理大臣"],
+      "role": "内閣総理大臣",
+      "organization": "ldp"
+    },
+    {
+      "id": "kihara_seiji",
+      "label": "木原誠二",
+      "aliases": ["木原官房長官"],
+      "role": "内閣官房長官",
+      "organization": "ldp"
+    },
+    {
+      "id": "noda_yoshihiko",
+      "label": "野田佳彦",
+      "aliases": ["野田代表"],
+      "role": "代表",
+      "organization": "cdp"
+    },
+    {
+      "id": "yoshida_akira",
+      "label": "吉田晴美",
+      "aliases": [],
+      "role": "代表代行",
+      "organization": "cdp"
+    },
+    {
+      "id": "baba_nobuyuki",
+      "label": "馬場伸幸",
+      "aliases": ["馬場代表"],
+      "role": "代表",
+      "organization": "ishin"
+    },
+    {
+      "id": "tamaki_yuichiro",
+      "label": "玉木雄一郎",
+      "aliases": ["玉木代表"],
+      "role": "代表",
+      "organization": "dpfp"
+    },
+    {
+      "id": "shii_kazuo",
+      "label": "志位和夫",
+      "aliases": ["志位委員長"],
+      "role": "委員長",
+      "organization": "jcp"
+    },
+    {
+      "id": "yamaguchi_natsuo",
+      "label": "山口那津男",
+      "aliases": ["山口代表"],
+      "role": "代表",
+      "organization": "komeito"
+    },
+    {
+      "id": "trump_donald",
+      "label": "ドナルド・トランプ",
+      "aliases": ["トランプ大統領", "トランプ氏"],
+      "role": "大統領",
+      "organization": "usa_gov"
+    },
+    {
+      "id": "xi_jinping",
+      "label": "習近平",
+      "aliases": ["習主席", "習近平主席"],
+      "role": "国家主席",
+      "organization": "china_gov"
+    },
+    {
+      "id": "putin_vladimir",
+      "label": "プーチン",
+      "aliases": ["プーチン大統領"],
+      "role": "大統領",
+      "organization": "russia_gov"
+    },
+    {
+      "id": "zelensky_volodymyr",
+      "label": "ゼレンスキー",
+      "aliases": ["ゼレンスキー大統領"],
+      "role": "大統領",
+      "organization": "ukraine_gov"
+    },
+    {
+      "id": "yokota_megumi",
+      "label": "横田めぐみ",
+      "aliases": [],
+      "role": null,
+      "organization": null
+    },
+    {
+      "id": "yokota_sakie",
+      "label": "横田早紀江",
+      "aliases": ["早紀江さん"],
+      "role": null,
+      "organization": null
+    },
+    {
+      "id": "ueda_kazuo",
+      "label": "植田和男",
+      "aliases": ["植田総裁"],
+      "role": "総裁",
+      "organization": "boj"
+    }
+  ]
+}

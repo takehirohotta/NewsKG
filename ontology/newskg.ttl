@@ -1,0 +1,253 @@
+@prefix : <http://example.org/newskg#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+
+# =============================================================================
+# NewsKG Ontology - ニュース知識グラフのオントロジー定義
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# クラス定義
+# -----------------------------------------------------------------------------
+
+# 基底エンティティクラス
+:Entity a rdfs:Class ;
+    rdfs:label "エンティティ"@ja ;
+    rdfs:comment "全てのエンティティの基底クラス"@ja .
+
+:Organization a rdfs:Class ;
+    rdfs:subClassOf :Entity ;
+    rdfs:label "組織"@ja ;
+    rdfs:comment "企業、政府機関、政党などの組織"@ja .
+
+:Person a rdfs:Class ;
+    rdfs:subClassOf :Entity ;
+    rdfs:label "人物"@ja ;
+    rdfs:comment "政治家、経営者などの人物"@ja .
+
+:Place a rdfs:Class ;
+    rdfs:subClassOf :Entity ;
+    rdfs:label "場所"@ja ;
+    rdfs:comment "都道府県、都市、地域などの場所"@ja .
+
+:NewsArticle a rdfs:Class ;
+    rdfs:label "ニュース記事"@ja ;
+    rdfs:comment "NHKニュースの記事"@ja .
+
+# -----------------------------------------------------------------------------
+# Statement クラス（イベント・事実の表現）
+# -----------------------------------------------------------------------------
+
+:Statement a rdfs:Class ;
+    rdfs:label "ステートメント"@ja ;
+    rdfs:comment "ニュースから抽出された事実・イベント"@ja .
+
+# 選挙関連ステートメント
+:ElectionStatement a rdfs:Class ;
+    rdfs:subClassOf :Statement ;
+    rdfs:label "選挙ステートメント"@ja ;
+    rdfs:comment "選挙に関連するイベント"@ja .
+
+:DissolutionAnnouncement a rdfs:Class ;
+    rdfs:subClassOf :ElectionStatement ;
+    rdfs:label "解散表明"@ja ;
+    rdfs:comment "議会解散の表明"@ja .
+
+:ElectionResult a rdfs:Class ;
+    rdfs:subClassOf :ElectionStatement ;
+    rdfs:label "選挙結果"@ja ;
+    rdfs:comment "選挙の当選・落選結果"@ja .
+
+:CandidateAnnouncement a rdfs:Class ;
+    rdfs:subClassOf :ElectionStatement ;
+    rdfs:label "立候補表明"@ja ;
+    rdfs:comment "選挙への立候補表明"@ja .
+
+# 災害関連ステートメント
+:DisasterStatement a rdfs:Class ;
+    rdfs:subClassOf :Statement ;
+    rdfs:label "災害ステートメント"@ja ;
+    rdfs:comment "災害に関連するイベント"@ja .
+
+:EarthquakeEvent a rdfs:Class ;
+    rdfs:subClassOf :DisasterStatement ;
+    rdfs:label "地震発生"@ja ;
+    rdfs:comment "地震の発生イベント"@ja .
+
+:WeatherDisaster a rdfs:Class ;
+    rdfs:subClassOf :DisasterStatement ;
+    rdfs:label "気象災害"@ja ;
+    rdfs:comment "台風、大雪、洪水などの気象災害"@ja .
+
+:EvacuationOrder a rdfs:Class ;
+    rdfs:subClassOf :DisasterStatement ;
+    rdfs:label "避難指示"@ja ;
+    rdfs:comment "避難指示・避難勧告の発令"@ja .
+
+# 政策関連ステートメント
+:PolicyStatement a rdfs:Class ;
+    rdfs:subClassOf :Statement ;
+    rdfs:label "政策ステートメント"@ja ;
+    rdfs:comment "政策に関連するイベント"@ja .
+
+:PolicyAnnouncement a rdfs:Class ;
+    rdfs:subClassOf :PolicyStatement ;
+    rdfs:label "政策発表"@ja ;
+    rdfs:comment "政府・省庁による政策発表"@ja .
+
+:BudgetDecision a rdfs:Class ;
+    rdfs:subClassOf :PolicyStatement ;
+    rdfs:label "予算決定"@ja ;
+    rdfs:comment "予算の決定・支出"@ja .
+
+:LegislationEvent a rdfs:Class ;
+    rdfs:subClassOf :PolicyStatement ;
+    rdfs:label "法制度イベント"@ja ;
+    rdfs:comment "法案の可決・施行"@ja .
+
+# -----------------------------------------------------------------------------
+# プロパティ定義
+# -----------------------------------------------------------------------------
+
+# 基本プロパティ
+:hasLabel a rdf:Property ;
+    rdfs:domain :Entity ;
+    rdfs:range xsd:string ;
+    rdfs:label "ラベル"@ja .
+
+:hasAlias a rdf:Property ;
+    rdfs:domain :Entity ;
+    rdfs:range xsd:string ;
+    rdfs:label "別名"@ja .
+
+# ニュース記事プロパティ
+:hasTitle a rdf:Property ;
+    rdfs:domain :NewsArticle ;
+    rdfs:range xsd:string ;
+    rdfs:label "タイトル"@ja .
+
+:hasUrl a rdf:Property ;
+    rdfs:domain :NewsArticle ;
+    rdfs:range xsd:anyURI ;
+    rdfs:label "URL"@ja .
+
+:hasPubDate a rdf:Property ;
+    rdfs:domain :NewsArticle ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "公開日時"@ja .
+
+:hasContent a rdf:Property ;
+    rdfs:domain :NewsArticle ;
+    rdfs:range xsd:string ;
+    rdfs:label "本文"@ja .
+
+# ステートメント共通プロパティ
+:extractedFrom a rdf:Property ;
+    rdfs:domain :Statement ;
+    rdfs:range :NewsArticle ;
+    rdfs:label "抽出元記事"@ja .
+
+:hasDate a rdf:Property ;
+    rdfs:domain :Statement ;
+    rdfs:range xsd:date ;
+    rdfs:label "発生日"@ja .
+
+:hasConfidence a rdf:Property ;
+    rdfs:domain :Statement ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "信頼度"@ja ;
+    rdfs:comment "抽出の信頼度 (0.0-1.0)"@ja .
+
+# 選挙ステートメントプロパティ
+:hasCandidate a rdf:Property ;
+    rdfs:domain :ElectionStatement ;
+    rdfs:range :Person ;
+    rdfs:label "候補者"@ja .
+
+:hasElectionType a rdf:Property ;
+    rdfs:domain :ElectionStatement ;
+    rdfs:range xsd:string ;
+    rdfs:label "選挙種別"@ja ;
+    rdfs:comment "衆議院選挙、参議院選挙など"@ja .
+
+:hasConstituency a rdf:Property ;
+    rdfs:domain :ElectionStatement ;
+    rdfs:range :Place ;
+    rdfs:label "選挙区"@ja .
+
+:dissolutionDeclaredBy a rdf:Property ;
+    rdfs:domain :DissolutionAnnouncement ;
+    rdfs:range :Person ;
+    rdfs:label "解散表明者"@ja .
+
+# 災害ステートメントプロパティ
+:hasLocation a rdf:Property ;
+    rdfs:domain :DisasterStatement ;
+    rdfs:range :Place ;
+    rdfs:label "発生場所"@ja .
+
+:hasMagnitude a rdf:Property ;
+    rdfs:domain :EarthquakeEvent ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "マグニチュード"@ja .
+
+:hasSeismicIntensity a rdf:Property ;
+    rdfs:domain :EarthquakeEvent ;
+    rdfs:range xsd:string ;
+    rdfs:label "震度"@ja .
+
+:hasDisasterType a rdf:Property ;
+    rdfs:domain :WeatherDisaster ;
+    rdfs:range xsd:string ;
+    rdfs:label "災害種別"@ja ;
+    rdfs:comment "台風、大雪、洪水など"@ja .
+
+:hasEvacuationArea a rdf:Property ;
+    rdfs:domain :EvacuationOrder ;
+    rdfs:range :Place ;
+    rdfs:label "避難対象地域"@ja .
+
+# 政策ステートメントプロパティ
+:hasActor a rdf:Property ;
+    rdfs:domain :PolicyStatement ;
+    rdfs:range :Entity ;
+    rdfs:label "行為主体"@ja ;
+    rdfs:comment "政策を実施する主体（政府、省庁など）"@ja .
+
+:hasTarget a rdf:Property ;
+    rdfs:domain :PolicyStatement ;
+    rdfs:range :Entity ;
+    rdfs:label "対象"@ja ;
+    rdfs:comment "政策の対象となるエンティティ"@ja .
+
+:hasBudgetAmount a rdf:Property ;
+    rdfs:domain :BudgetDecision ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "予算額"@ja ;
+    rdfs:comment "予算額（円）"@ja .
+
+:hasPolicyArea a rdf:Property ;
+    rdfs:domain :PolicyStatement ;
+    rdfs:range xsd:string ;
+    rdfs:label "政策分野"@ja ;
+    rdfs:comment "経済、外交、防衛など"@ja .
+
+# エンティティ間関係プロパティ
+:belongsTo a rdf:Property ;
+    rdfs:domain :Person ;
+    rdfs:range :Organization ;
+    rdfs:label "所属"@ja .
+
+:hasRole a rdf:Property ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "役職"@ja .
+
+:locatedIn a rdf:Property ;
+    rdfs:domain :Entity ;
+    rdfs:range :Place ;
+    rdfs:label "所在地"@ja .

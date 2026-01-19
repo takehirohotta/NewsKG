@@ -1,0 +1,186 @@
+@prefix : <http://example.org/newskg#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# =============================================================================
+# NewsKG SHACL Shapes - RDFデータ検証ルール
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# NewsArticle の検証ルール
+# -----------------------------------------------------------------------------
+
+:NewsArticleShape a sh:NodeShape ;
+    sh:targetClass :NewsArticle ;
+    sh:property [
+        sh:path :hasTitle ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "タイトル"@ja ;
+        sh:message "ニュース記事にはタイトルが必須です"@ja ;
+    ] ;
+    sh:property [
+        sh:path :hasUrl ;
+        sh:datatype xsd:anyURI ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "URL"@ja ;
+        sh:message "ニュース記事にはURLが必須です"@ja ;
+    ] ;
+    sh:property [
+        sh:path :hasPubDate ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "公開日時"@ja ;
+        sh:message "ニュース記事には公開日時が必須です"@ja ;
+    ] .
+
+# -----------------------------------------------------------------------------
+# Statement 基底の検証ルール
+# -----------------------------------------------------------------------------
+
+:StatementShape a sh:NodeShape ;
+    sh:targetClass :Statement ;
+    sh:property [
+        sh:path :extractedFrom ;
+        sh:class :NewsArticle ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "抽出元記事"@ja ;
+        sh:message "ステートメントには抽出元記事が必須です"@ja ;
+    ] ;
+    sh:property [
+        sh:path :hasConfidence ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:name "信頼度"@ja ;
+        sh:message "信頼度は0.0から1.0の範囲で指定してください"@ja ;
+    ] .
+
+# -----------------------------------------------------------------------------
+# 選挙ステートメントの検証ルール
+# -----------------------------------------------------------------------------
+
+:ElectionStatementShape a sh:NodeShape ;
+    sh:targetClass :ElectionStatement ;
+    sh:property [
+        sh:path :hasElectionType ;
+        sh:datatype xsd:string ;
+        sh:name "選挙種別"@ja ;
+    ] .
+
+:DissolutionAnnouncementShape a sh:NodeShape ;
+    sh:targetClass :DissolutionAnnouncement ;
+    sh:property [
+        sh:path :dissolutionDeclaredBy ;
+        sh:class :Person ;
+        sh:name "解散表明者"@ja ;
+        sh:message "解散表明には表明者が必要です"@ja ;
+    ] .
+
+:ElectionResultShape a sh:NodeShape ;
+    sh:targetClass :ElectionResult ;
+    sh:property [
+        sh:path :hasCandidate ;
+        sh:class :Person ;
+        sh:name "候補者"@ja ;
+    ] .
+
+# -----------------------------------------------------------------------------
+# 災害ステートメントの検証ルール
+# -----------------------------------------------------------------------------
+
+:DisasterStatementShape a sh:NodeShape ;
+    sh:targetClass :DisasterStatement ;
+    sh:property [
+        sh:path :hasLocation ;
+        sh:class :Place ;
+        sh:name "発生場所"@ja ;
+    ] .
+
+:EarthquakeEventShape a sh:NodeShape ;
+    sh:targetClass :EarthquakeEvent ;
+    sh:property [
+        sh:path :hasMagnitude ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 10.0 ;
+        sh:name "マグニチュード"@ja ;
+        sh:message "マグニチュードは0.0から10.0の範囲で指定してください"@ja ;
+    ] ;
+    sh:property [
+        sh:path :hasSeismicIntensity ;
+        sh:datatype xsd:string ;
+        sh:pattern "^(1|2|3|4|5弱|5強|6弱|6強|7)$" ;
+        sh:name "震度"@ja ;
+        sh:message "震度は1〜7の有効な値を指定してください"@ja ;
+    ] .
+
+:WeatherDisasterShape a sh:NodeShape ;
+    sh:targetClass :WeatherDisaster ;
+    sh:property [
+        sh:path :hasDisasterType ;
+        sh:datatype xsd:string ;
+        sh:name "災害種別"@ja ;
+    ] .
+
+# -----------------------------------------------------------------------------
+# 政策ステートメントの検証ルール
+# -----------------------------------------------------------------------------
+
+:PolicyStatementShape a sh:NodeShape ;
+    sh:targetClass :PolicyStatement ;
+    sh:property [
+        sh:path :hasActor ;
+        sh:or (
+            [ sh:class :Organization ]
+            [ sh:class :Person ]
+        ) ;
+        sh:name "行為主体"@ja ;
+    ] .
+
+:BudgetDecisionShape a sh:NodeShape ;
+    sh:targetClass :BudgetDecision ;
+    sh:property [
+        sh:path :hasBudgetAmount ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:name "予算額"@ja ;
+        sh:message "予算額は0以上の数値を指定してください"@ja ;
+    ] .
+
+# -----------------------------------------------------------------------------
+# エンティティの検証ルール
+# -----------------------------------------------------------------------------
+
+:OrganizationShape a sh:NodeShape ;
+    sh:targetClass :Organization ;
+    sh:property [
+        sh:path :hasLabel ;
+        sh:minCount 1 ;
+        sh:name "ラベル"@ja ;
+        sh:message "組織にはラベルが必須です"@ja ;
+    ] .
+
+:PersonShape a sh:NodeShape ;
+    sh:targetClass :Person ;
+    sh:property [
+        sh:path :hasLabel ;
+        sh:minCount 1 ;
+        sh:name "ラベル"@ja ;
+        sh:message "人物にはラベルが必須です"@ja ;
+    ] .
+
+:PlaceShape a sh:NodeShape ;
+    sh:targetClass :Place ;
+    sh:property [
+        sh:path :hasLabel ;
+        sh:minCount 1 ;
+        sh:name "ラベル"@ja ;
+        sh:message "場所にはラベルが必須です"@ja ;
+    ] .

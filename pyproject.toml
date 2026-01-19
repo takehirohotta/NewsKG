@@ -1,0 +1,12 @@
+[project]
+name = "newskg"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.11"
+dependencies = [
+    "feedparser>=6.0.12",
+    "pyshacl>=0.31.0",
+    "python-dateutil>=2.9.0.post0",
+    "rdflib>=7.5.0",
+    "requests>=2.32.5",
+]

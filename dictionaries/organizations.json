@@ -1,0 +1,148 @@
+{
+  "organizations": [
+    {
+      "id": "gov_japan",
+      "label": "日本政府",
+      "aliases": ["政府", "日本国政府"],
+      "type": "government"
+    },
+    {
+      "id": "kantei",
+      "label": "内閣官房",
+      "aliases": ["官邸", "総理官邸", "首相官邸"],
+      "type": "government"
+    },
+    {
+      "id": "mof",
+      "label": "財務省",
+      "aliases": [],
+      "type": "ministry"
+    },
+    {
+      "id": "meti",
+      "label": "経済産業省",
+      "aliases": ["経産省"],
+      "type": "ministry"
+    },
+    {
+      "id": "mofa",
+      "label": "外務省",
+      "aliases": [],
+      "type": "ministry"
+    },
+    {
+      "id": "mlit",
+      "label": "国土交通省",
+      "aliases": ["国交省"],
+      "type": "ministry"
+    },
+    {
+      "id": "mod",
+      "label": "防衛省",
+      "aliases": [],
+      "type": "ministry"
+    },
+    {
+      "id": "mhlw",
+      "label": "厚生労働省",
+      "aliases": ["厚労省"],
+      "type": "ministry"
+    },
+    {
+      "id": "mext",
+      "label": "文部科学省",
+      "aliases": ["文科省"],
+      "type": "ministry"
+    },
+    {
+      "id": "env",
+      "label": "環境省",
+      "aliases": [],
+      "type": "ministry"
+    },
+    {
+      "id": "jma",
+      "label": "気象庁",
+      "aliases": [],
+      "type": "agency"
+    },
+    {
+      "id": "boj",
+      "label": "日本銀行",
+      "aliases": ["日銀"],
+      "type": "central_bank"
+    },
+    {
+      "id": "ldp",
+      "label": "自由民主党",
+      "aliases": ["自民党", "自民"],
+      "type": "party"
+    },
+    {
+      "id": "komeito",
+      "label": "公明党",
+      "aliases": ["公明"],
+      "type": "party"
+    },
+    {
+      "id": "cdp",
+      "label": "立憲民主党",
+      "aliases": ["立憲", "立民"],
+      "type": "party"
+    },
+    {
+      "id": "ishin",
+      "label": "日本維新の会",
+      "aliases": ["維新", "維新の会"],
+      "type": "party"
+    },
+    {
+      "id": "dpfp",
+      "label": "国民民主党",
+      "aliases": ["国民", "国民民主"],
+      "type": "party"
+    },
+    {
+      "id": "jcp",
+      "label": "日本共産党",
+      "aliases": ["共産党", "共産"],
+      "type": "party"
+    },
+    {
+      "id": "reiwa",
+      "label": "れいわ新選組",
+      "aliases": ["れいわ"],
+      "type": "party"
+    },
+    {
+      "id": "shr",
+      "label": "衆議院",
+      "aliases": ["衆院"],
+      "type": "legislature"
+    },
+    {
+      "id": "snr",
+      "label": "参議院",
+      "aliases": ["参院"],
+      "type": "legislature"
+    },
+    {
+      "id": "keidanren",
+      "label": "経済団体連合会",
+      "aliases": ["経団連"],
+      "type": "association"
+    },
+    {
+      "id": "tepco",
+      "label": "東京電力",
+      "aliases": ["東電"],
+      "type": "company"
+    },
+    {
+      "id": "nhk",
+      "label": "日本放送協会",
+      "aliases": ["NHK"],
+      "type": "media"
+    }
+  ]
+}
