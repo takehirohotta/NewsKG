@@ -1,0 +1,360 @@
+if (typeof cytoscapeFcose !== 'undefined') {
+    cytoscape.use(cytoscapeFcose);
+}
+
+const GraphManager = {
+    cy: null,
+    currentData: null,
+    visibleTypes: new Set(['Person', 'Organization', 'Place', 'Event', 'Entity']),
+    groupingEnabled: false,
+    expandedGroups: new Set(),
+    groupedData: null,
+
+    STATEMENT_TYPES: [],
+
+    nodeStyles: {
+        Person: { color: '#4a90d9', shape: 'ellipse' },
+        Organization: { color: '#7cb342', shape: 'rectangle' },
+        Place: { color: '#ff9800', shape: 'triangle' },
+        Event: { color: '#9c27b0', shape: 'diamond' },
+        Entity: { color: '#607d8b', shape: 'ellipse' },
+        NewsArticle: { color: '#78909c', shape: 'hexagon' },
+        GroupNode: { color: '#e91e63', shape: 'round-rectangle' },
+        default: { color: '#999999', shape: 'ellipse' }
+    },
+
+    edgeStyles: {
+        default: { lineStyle: 'solid', color: '#666666', width: 2 }
+    },
+
+    init(containerId) {
+        this.cy = cytoscape({
+            container: document.getElementById(containerId),
+            style: this.buildStylesheet(),
+            layout: { name: 'preset' },
+            minZoom: 0.1,
+            maxZoom: 3,
+            wheelSensitivity: 0.3,
+        });
+
+        this.setupEventHandlers();
+        return this.cy;
+    },
+
+    buildStylesheet() {
+        return [
+            {
+                selector: 'node',
+                style: {
+                    'label': 'data(label)',
+                    'text-valign': 'bottom',
+                    'text-halign': 'center',
+                    'font-size': '11px',
+                    'text-margin-y': 5,
+                    'text-max-width': '150px',
+                    'text-wrap': 'wrap',
+                    'text-overflow-wrap': 'anywhere',
+                    'width': 'data(size)',
+                    'height': 'data(size)',
+                    'background-color': 'data(color)',
+                    'border-width': 2,
+                    'border-color': 'data(borderColor)',
+                    'shape': 'data(shape)',
+                }
+            },
+            {
+                selector: 'node:selected',
+                style: {
+                    'border-width': 4,
+                    'border-color': '#1976d2',
+                    'background-opacity': 1,
+                }
+            },
+            {
+                selector: 'node.highlighted',
+                style: {
+                    'border-width': 3,
+                    'border-color': '#ff5722',
+                }
+            },
+            {
+                selector: 'node.hidden',
+                style: {
+                    'display': 'none',
+                }
+            },
+            {
+                selector: 'edge',
+                style: {
+                    'width': 'data(width)',
+                    'line-color': 'data(color)',
+                    'line-style': 'data(lineStyle)',
+                    'target-arrow-color': 'data(color)',
+                    'target-arrow-shape': 'triangle',
+                    'curve-style': 'bezier',
+                    'arrow-scale': 0.8,
+                    'opacity': 0.7,
+                }
+            },
+            {
+                selector: 'edge:selected',
+                style: {
+                    'width': 3,
+                    'opacity': 1,
+                }
+            },
+            {
+                selector: 'edge.hidden',
+                style: {
+                    'display': 'none',
+                }
+            },
+            {
+                selector: 'edge[label]',
+                style: {
+                    'label': 'data(label)',
+                    'font-size': '10px',
+                    'text-rotation': 'autorotate',
+                    'text-margin-y': -10,
+                    'color': '#333333',
+                    'text-background-color': '#ffffff',
+                    'text-background-opacity': 0.8,
+                    'text-background-padding': '2px',
+                }
+            },
+            {
+                selector: 'node[?isGroup]',
+                style: {
+                    'font-weight': 'bold',
+                    'font-size': '12px',
+                    'text-valign': 'center',
+                    'text-halign': 'center',
+                    'border-width': 3,
+                    'border-style': 'double',
+                    'cursor': 'pointer',
+                }
+            },
+        ];
+    },
+
+    setupEventHandlers() {
+        this.cy.on('tap', 'node', (evt) => {
+            const node = evt.target;
+            const nodeData = node.data();
+            
+            if (nodeData.isGroup) {
+                this.toggleGroup(nodeData.groupType);
+                return;
+            }
+            
+            window.dispatchEvent(new CustomEvent('node-selected', { 
+                detail: { nodeData: nodeData }
+            }));
+        });
+
+        this.cy.on('dbltap', 'node', (evt) => {
+            const node = evt.target;
+            const nodeData = node.data();
+            
+            if (nodeData.isGroup) {
+                return;
+            }
+            
+            const url = nodeData.properties?.url;
+            if (url) {
+                window.open(url, '_blank');
+            }
+        });
+
+        this.cy.on('mouseover', 'node', (evt) => {
+            const node = evt.target;
+            window.dispatchEvent(new CustomEvent('node-hover', {
+                detail: { 
+                    nodeData: node.data(),
+                    position: evt.renderedPosition 
+                }
+            }));
+        });
+
+        this.cy.on('mouseout', 'node', () => {
+            window.dispatchEvent(new CustomEvent('node-hover-out'));
+        });
+
+        this.cy.on('tap', (evt) => {
+            if (evt.target === this.cy) {
+                window.dispatchEvent(new CustomEvent('canvas-clicked'));
+            }
+        });
+    },
+
+    loadData(graphData) {
+        this.currentData = graphData;
+        
+        const elements = this.transformData(graphData);
+        
+        this.cy.elements().remove();
+        this.cy.add(elements);
+        
+        this.applyTypeFilter();
+    },
+
+    transformData(graphData) {
+        const nodes = graphData.nodes.map(node => {
+            const type = node.data.type;
+            const style = this.nodeStyles[type] || this.nodeStyles.default;
+            
+            return {
+                group: 'nodes',
+                data: {
+                    ...node.data,
+                    color: style.color,
+                    borderColor: this.darkenColor(style.color, 20),
+                    shape: style.shape,
+                    baseType: type,
+                }
+            };
+        });
+
+        const edges = graphData.edges.map(edge => {
+            const style = this.edgeStyles.default;
+            
+            return {
+                group: 'edges',
+                data: {
+                    ...edge.data,
+                    color: style.color,
+                    lineStyle: style.lineStyle,
+                    width: style.width || 1.5,
+                }
+            };
+        });
+
+        return [...nodes, ...edges];
+    },
+
+    darkenColor(hex, percent) {
+        const num = parseInt(hex.replace('#', ''), 16);
+        const amt = Math.round(2.55 * percent);
+        const R = Math.max((num >> 16) - amt, 0);
+        const G = Math.max((num >> 8 & 0x00FF) - amt, 0);
+        const B = Math.max((num & 0x0000FF) - amt, 0);
+        return '#' + (0x1000000 + R * 0x10000 + G * 0x100 + B).toString(16).slice(1);
+    },
+
+    runLayout(layoutName = 'fcose') {
+        const layoutOptions = this.getLayoutOptions(layoutName);
+        const layout = this.cy.layout(layoutOptions);
+        layout.run();
+    },
+
+    getLayoutOptions(name) {
+        const layouts = {
+            fcose: {
+                name: 'fcose',
+                quality: 'default',
+                randomize: true,
+                animate: true,
+                animationDuration: 500,
+                fit: true,
+                padding: 50,
+                nodeSeparation: 150,
+                idealEdgeLength: 150,
+                nodeRepulsion: 6000,
+                edgeElasticity: 0.45,
+            },
+            cose: {
+                name: 'cose',
+                animate: true,
+                animationDuration: 500,
+                fit: true,
+                padding: 50,
+                nodeRepulsion: 400000,
+                idealEdgeLength: 100,
+                edgeElasticity: 100,
+            },
+            concentric: {
+                name: 'concentric',
+                animate: true,
+                fit: true,
+                padding: 50,
+                concentric: (node) => node.data('size') || 10,
+                levelWidth: () => 2,
+            },
+            breadthfirst: {
+                name: 'breadthfirst',
+                animate: true,
+                fit: true,
+                padding: 50,
+                directed: true,
+                spacingFactor: 1.5,
+            },
+            circle: {
+                name: 'circle',
+                animate: true,
+                fit: true,
+                padding: 50,
+            },
+        };
+        
+        return layouts[name] || layouts.fcose;
+    },
+
+    setTypeFilter(types) {
+        this.visibleTypes = new Set(types);
+        this.applyTypeFilter();
+    },
+
+    applyTypeFilter() {
+        // ノードの表示/非表示
+        this.cy.nodes().forEach(node => {
+            const baseType = node.data('baseType') || node.data('type');
+            if (this.visibleTypes.has(baseType)) {
+                node.removeClass('hidden');
+            } else {
+                node.addClass('hidden');
+            }
+        });
+
+        // エッジの表示/非表示（両端のノードが表示されている場合のみ表示）
+        this.cy.edges().forEach(edge => {
+            const source = edge.source();
+            const target = edge.target();
+            if (source.hasClass('hidden') || target.hasClass('hidden')) {
+                edge.addClass('hidden');
+            } else {
+                edge.removeClass('hidden');
+            }
+        });
+    },
+
+    toggleGroup(groupType) {
+    },
+
+    setGroupingEnabled(enabled) {
+    },
+
+    highlightNode(nodeId) {
+        this.cy.nodes().removeClass('highlighted');
+        const node = this.cy.getElementById(nodeId);
+        if (node) {
+            node.addClass('highlighted');
+            this.cy.animate({
+                center: { eles: node },
+                zoom: 1.5,
+            }, { duration: 300 });
+        }
+    },
+
+    fit() {
+        this.cy.fit(50);
+    },
+
+    getStats() {
+        return {
+            nodes: this.cy.nodes().length,
+            edges: this.cy.edges().length,
+        };
+    },
+};
+
+window.GraphManager = GraphManager;

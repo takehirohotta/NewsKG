@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsKG Visualizer - ニュース知識グラフ可視化</title>
+    
+    <!-- Cytoscape.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
+    <!-- Cytoscape.js layout extensions -->
+    <script src="https://unpkg.com/layout-base@2.0.1/layout-base.js"></script>
+    <script src="https://unpkg.com/cose-base@2.2.0/cose-base.js"></script>
+    <script src="https://unpkg.com/cytoscape-fcose@2.2.0/cytoscape-fcose.js"></script>
+    
+    <!-- スタイルシート -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- ヘッダー -->
+        <header class="header">
+            <h1 class="header-title">NewsKG Visualizer</h1>
+            <div class="header-controls">
+                <div class="period-selector">
+                    <label for="period-select">期間:</label>
+                    <select id="period-select">
+                        <option value="day">1日</option>
+                        <option value="week" selected>1週間</option>
+                        <option value="month">1ヶ月</option>
+                        <option value="custom">カスタム</option>
+                    </select>
+                </div>
+                <div class="custom-date-range" id="custom-date-range" style="display: none;">
+                    <input type="date" id="from-date" aria-label="開始日">
+                    <span>〜</span>
+                    <input type="date" id="to-date" aria-label="終了日">
+                </div>
+                <button id="refresh-btn" class="btn btn-primary">
+                    <span class="btn-icon">↻</span> 更新
+                </button>
+            </div>
+        </header>
+
+        <!-- フィルターバー -->
+        <div class="filter-bar">
+            <span class="filter-label">フィルタ:</span>
+            <label class="filter-checkbox">
+                <input type="checkbox" data-type="Person" checked>
+                <span class="node-indicator person"></span>
+                Person
+            </label>
+            <label class="filter-checkbox">
+                <input type="checkbox" data-type="Organization" checked>
+                <span class="node-indicator organization"></span>
+                Organization
+            </label>
+            <label class="filter-checkbox">
+                <input type="checkbox" data-type="Place" checked>
+                <span class="node-indicator place"></span>
+                Place
+            </label>
+            <label class="filter-checkbox">
+                <input type="checkbox" data-type="Event" checked>
+                <span class="node-indicator event"></span>
+                Event
+            </label>
+            <label class="filter-checkbox">
+                <input type="checkbox" data-type="Entity" checked>
+                <span class="node-indicator entity"></span>
+                Entity
+            </label>
+            <label class="filter-checkbox">
+                <input type="checkbox" data-type="NewsArticle">
+                <span class="node-indicator article"></span>
+                Article
+            </label>
+            <div class="layout-selector">
+                <label for="layout-select">レイアウト:</label>
+                <select id="layout-select">
+                    <option value="physics" selected>physics (動的)</option>
+                    <option value="fcose">fcose</option>
+                    <option value="cose">cose</option>
+                    <option value="concentric">concentric</option>
+                    <option value="breadthfirst">breadthfirst</option>
+                    <option value="circle">circle</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- メインコンテンツ -->
+        <main class="main-content">
+            <!-- グラフ表示エリア -->
+            <div class="graph-container" id="cy">
+                <!-- 物理パラメータ調整パネル -->
+                <div class="physics-panel" id="physics-panel">
+                    <div class="physics-panel-header">
+                        <span>⚙️ 物理設定</span>
+                        <button class="physics-toggle" id="physics-toggle">▼</button>
+                    </div>
+                    <div class="physics-panel-content" id="physics-content">
+                        <div class="physics-slider">
+                            <label>反発力: <span id="repulsion-value">5000</span></label>
+                            <input type="range" id="repulsion-slider" min="1000" max="20000" value="5000" step="500">
+                        </div>
+                        <div class="physics-slider">
+                            <label>引力: <span id="attraction-value">0.005</span></label>
+                            <input type="range" id="attraction-slider" min="0.001" max="0.05" value="0.005" step="0.001">
+                        </div>
+                        <div class="physics-slider">
+                            <label>中心引力: <span id="gravity-value">0.01</span></label>
+                            <input type="range" id="gravity-slider" min="0.001" max="0.1" value="0.01" step="0.005">
+                        </div>
+                        <div class="physics-slider">
+                            <label>減衰: <span id="damping-value">0.85</span></label>
+                            <input type="range" id="damping-slider" min="0.5" max="0.99" value="0.85" step="0.01">
+                        </div>
+                        <button class="btn btn-small" id="physics-reset">リセット</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 詳細パネル -->
+            <aside class="detail-panel" id="detail-panel">
+                <div class="detail-header">
+                    <h2 class="detail-title">ノード詳細</h2>
+                    <button class="detail-close" id="detail-close" aria-label="閉じる">×</button>
+                </div>
+                <div class="detail-content" id="detail-content">
+                    <p class="detail-placeholder">ノードをクリックすると詳細が表示されます</p>
+                </div>
+            </aside>
+        </main>
+
+        <!-- フッター（ステータスバー） -->
+        <footer class="footer">
+            <div class="legend">
+                <span class="legend-item">
+                    <span class="node-indicator person"></span> Person
+                </span>
+                <span class="legend-item">
+                    <span class="node-indicator organization"></span> Organization
+                </span>
+                <span class="legend-item">
+                    <span class="node-indicator place"></span> Place
+                </span>
+                <span class="legend-item">
+                    <span class="node-indicator event"></span> Event
+                </span>
+                <span class="legend-item">
+                    <span class="node-indicator entity"></span> Entity
+                </span>
+                <span class="legend-item">
+                    <span class="node-indicator article"></span> Article
+                </span>
+            </div>
+            <div class="status-bar">
+                <span id="status-nodes">ノード: -</span>
+                <span id="status-edges">エッジ: -</span>
+                <span id="status-period">期間: -</span>
+            </div>
+        </footer>
+
+        <!-- ローディングオーバーレイ -->
+        <div class="loading-overlay" id="loading-overlay">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">データを読み込み中...</p>
+        </div>
+
+        <!-- ツールチップ -->
+        <div class="tooltip" id="tooltip"></div>
+    </div>
+
+    <!-- JavaScript モジュール -->
+    <script src="js/api.js"></script>
+    <script src="js/graph.js"></script>
+    <script src="js/detail-panel.js"></script>
+    <script src="js/controls.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

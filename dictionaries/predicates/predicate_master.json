@@ -1,0 +1,2405 @@
+{
+  "predicates": [
+    {
+      "id": "assume_office",
+      "label": "就任",
+      "aliases": [
+        "就任する",
+        "着任",
+        "就く"
+      ],
+      "category": "position"
+    },
+    {
+      "id": "resign",
+      "label": "辞任",
+      "aliases": [
+        "辞任する",
+        "辞職",
+        "退任"
+      ],
+      "category": "position"
+    },
+    {
+      "id": "elected",
+      "label": "当選",
+      "aliases": [
+        "当選する",
+        "選出"
+      ],
+      "category": "election"
+    },
+    {
+      "id": "run_for",
+      "label": "立候補",
+      "aliases": [
+        "立候補する",
+        "出馬",
+        "出馬表明"
+      ],
+      "category": "election"
+    },
+    {
+      "id": "meet",
+      "label": "会談",
+      "aliases": [
+        "会談する",
+        "pred_407fa190",
+        "pred_cf88a45c",
+        "pred_f49f7837",
+        "pred_fe9a69a2",
+        "pred_fc040de8",
+        "pred_4a4b5dfa",
+        "pred_a1ab0aa6",
+        "pred_5560c794",
+        "pred_a27870da",
+        "pred_9c7614f1",
+        "pred_d27a6baf",
+        "pred_0a9bdf26",
+        "pred_095e938e",
+        "面会",
+        "pred_ccccae21",
+        "pred_8bd677f3",
+        "会見",
+        "pred_f46679e7",
+        "pred_8218a07f",
+        "pred_2963e1fd",
+        "pred_fa77937b",
+        "pred_57e7044b",
+        "pred_4c07dade",
+        "協議"
+      ],
+      "category": "diplomacy"
+    },
+    {
+      "id": "visit",
+      "label": "訪問",
+      "aliases": [
+        "pred_039959aa",
+        "pred_f0bb2ed0",
+        "pred_7c241664",
+        "訪れる",
+        "pred_e946f5b2",
+        "pred_358e3595",
+        "pred_9d9cf6d9",
+        "訪問",
+        "訪問する",
+        "pred_7530ebb5",
+        "pred_7a07b1ae",
+        "pred_bb3d9fab",
+        "来訪",
+        "pred_7c57d9b1"
+      ],
+      "category": "diplomacy"
+    },
+    {
+      "id": "announce",
+      "label": "発表",
+      "aliases": [
+        "pred_30749e25",
+        "pred_1431e291",
+        "pred_d994d598",
+        "公表",
+        "発表する",
+        "表明",
+        "発表"
+      ],
+      "category": "action"
+    },
+    {
+      "id": "decide",
+      "label": "決定",
+      "aliases": [
+        "決定する",
+        "決める",
+        "採択"
+      ],
+      "category": "action"
+    },
+    {
+      "id": "arrest",
+      "label": "逮捕",
+      "aliases": [
+        "逮捕する",
+        "検挙",
+        "拘束"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "belong_to",
+      "label": "所属",
+      "aliases": [
+        "所属する",
+        "在籍"
+      ],
+      "category": "affiliation"
+    },
+    {
+      "id": "represent",
+      "label": "代表",
+      "aliases": [
+        "代表する",
+        "率いる"
+      ],
+      "category": "position"
+    },
+    {
+      "id": "occur_at",
+      "label": "発生",
+      "aliases": [
+        "発生する",
+        "起きる",
+        "起こる"
+      ],
+      "category": "event"
+    },
+    {
+      "id": "support",
+      "label": "支援",
+      "aliases": [
+        "支援する",
+        "援助",
+        "サポート"
+      ],
+      "category": "action"
+    },
+    {
+      "id": "criticize",
+      "label": "批判",
+      "aliases": [
+        "批判する",
+        "非難",
+        "糾弾"
+      ],
+      "category": "statement"
+    },
+    {
+      "id": "approve",
+      "label": "承認",
+      "aliases": [
+        "承認する",
+        "可決",
+        "認可"
+      ],
+      "category": "action"
+    },
+    {
+      "id": "die",
+      "label": "死亡",
+      "aliases": [
+        "死亡する",
+        "亡くなる",
+        "逝去"
+      ],
+      "category": "life_event"
+    },
+    {
+      "id": "acquire",
+      "label": "買収",
+      "aliases": [
+        "買収する",
+        "取得",
+        "M&A"
+      ],
+      "category": "business"
+    },
+    {
+      "id": "partner_with",
+      "label": "提携",
+      "aliases": [
+        "提携する",
+        "連携",
+        "協力"
+      ],
+      "category": "business"
+    },
+    {
+      "id": "hold_at",
+      "label": "開催",
+      "aliases": [
+        "pred_748f02ed",
+        "pred_e12421e9",
+        "pred_ff8d85d4",
+        "行う",
+        "pred_0fbb009e",
+        "pred_d1c86d93",
+        "pred_da7a03da",
+        "開催",
+        "pred_ce9bc8aa",
+        "実施",
+        "開催する"
+      ],
+      "category": "event"
+    },
+    {
+      "id": "postpone",
+      "label": "延期",
+      "aliases": [
+        "延期する",
+        "先送り"
+      ],
+      "category": "event"
+    },
+    {
+      "id": "掲げる",
+      "label": "掲げる",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "主張",
+      "label": "主張",
+      "aliases": [],
+      "category": "diplomacy"
+    },
+    {
+      "id": "連絡",
+      "label": "連絡",
+      "aliases": [
+        "で連絡とれず"
+      ],
+      "category": "action"
+    },
+    {
+      "id": "存在",
+      "label": "存在",
+      "aliases": [
+        "に存在"
+      ],
+      "category": "position"
+    },
+    {
+      "id": "対象",
+      "label": "対象",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "予測",
+      "label": "予測",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "進む",
+      "label": "進む",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "中心",
+      "label": "中心",
+      "aliases": [
+        "中心に"
+      ],
+      "category": "position"
+    },
+    {
+      "id": "影響",
+      "label": "影響",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "まで",
+      "label": "まで",
+      "aliases": [],
+      "category": "position"
+    },
+    {
+      "id": "までの1週間",
+      "label": "までの1週間",
+      "aliases": [],
+      "category": "position"
+    },
+    {
+      "id": "振り返る",
+      "label": "振り返る",
+      "aliases": [
+        "をふりかえります"
+      ],
+      "category": "action"
+    },
+    {
+      "id": "漏洩",
+      "label": "漏洩",
+      "aliases": [
+        "漏えい"
+      ],
+      "category": "other"
+    },
+    {
+      "id": "借入",
+      "label": "借入",
+      "aliases": [
+        "借り入れ"
+      ],
+      "category": "business"
+    },
+    {
+      "id": "謝罪",
+      "label": "謝罪",
+      "aliases": [],
+      "category": "diplomacy"
+    },
+    {
+      "id": "敗北",
+      "label": "敗北",
+      "aliases": [
+        "敗れる",
+        "連敗"
+      ],
+      "category": "action"
+    },
+    {
+      "id": "召集",
+      "label": "召集",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "公示",
+      "label": "公示",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "投開票",
+      "label": "投開票",
+      "aliases": [],
+      "category": "event"
+    },
+    {
+      "id": "解散",
+      "label": "解散",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "開始",
+      "label": "開始",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "発言",
+      "label": "発言",
+      "aliases": [],
+      "category": "diplomacy"
+    },
+    {
+      "id": "好調",
+      "label": "好調",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "キャプテン",
+      "label": "キャプテン",
+      "aliases": [],
+      "category": "position"
+    },
+    {
+      "id": "参加",
+      "label": "参加",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "選挙対策委員長",
+      "label": "選挙対策委員長",
+      "aliases": [],
+      "category": "position"
+    },
+    {
+      "id": "公認",
+      "label": "公認",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "認める",
+      "label": "認める",
+      "aliases": [],
+      "category": "diplomacy"
+    },
+    {
+      "id": "目指す",
+      "label": "目指す",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "場所",
+      "label": "場所",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "死者",
+      "label": "死者",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "負傷者",
+      "label": "負傷者",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "行方不明者",
+      "label": "行方不明者",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "活動",
+      "label": "活動",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "役職",
+      "label": "役職",
+      "aliases": [],
+      "category": "position"
+    },
+    {
+      "id": "挑戦",
+      "label": "挑戦",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "釈放",
+      "label": "釈放",
+      "aliases": [],
+      "category": "crime"
+    },
+    {
+      "id": "対応",
+      "label": "対応",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "gdp成長率",
+      "label": "GDP成長率",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "目標達成",
+      "label": "目標達成",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "不動産不況",
+      "label": "不動産不況",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "投資",
+      "label": "投資",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "公開",
+      "label": "公開",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "提供",
+      "label": "提供",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "脱線",
+      "label": "脱線",
+      "aliases": [
+        "が脱線"
+      ],
+      "category": "event"
+    },
+    {
+      "id": "衝突",
+      "label": "衝突",
+      "aliases": [
+        "が衝突"
+      ],
+      "category": "event"
+    },
+    {
+      "id": "けが",
+      "label": "けが",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "意欲を示す",
+      "label": "意欲を示す",
+      "aliases": [
+        "意欲を示し"
+      ],
+      "category": "diplomacy"
+    },
+    {
+      "id": "考えを示す",
+      "label": "考えを示す",
+      "aliases": [
+        "考えを示し"
+      ],
+      "category": "diplomacy"
+    },
+    {
+      "id": "対抗措置を検討",
+      "label": "対抗措置を検討",
+      "aliases": [],
+      "category": "diplomacy"
+    },
+    {
+      "id": "自治領",
+      "label": "自治領",
+      "aliases": [],
+      "category": "position"
+    },
+    {
+      "id": "判決を言い渡す",
+      "label": "判決を言い渡す",
+      "aliases": [],
+      "category": "crime"
+    },
+    {
+      "id": "訴える",
+      "label": "訴える",
+      "aliases": [
+        "訴えた"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "仕事を失う",
+      "label": "仕事を失う",
+      "aliases": [
+        "仕事を失った"
+      ],
+      "category": "business"
+    },
+    {
+      "id": "規定する",
+      "label": "規定する",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "殺害",
+      "label": "殺害",
+      "aliases": [],
+      "category": "crime"
+    },
+    {
+      "id": "首を絞められる",
+      "label": "首を絞められる",
+      "aliases": [
+        "首を絞められて"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "放火される",
+      "label": "放火される",
+      "aliases": [
+        "放火された"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "調査",
+      "label": "調査",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "荒らされた形跡",
+      "label": "荒らされた形跡",
+      "aliases": [],
+      "category": "crime"
+    },
+    {
+      "id": "出動",
+      "label": "出動",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "が",
+      "label": "が",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "は",
+      "label": "は",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "軍事侵攻",
+      "label": "軍事侵攻",
+      "aliases": [],
+      "category": "crime"
+    },
+    {
+      "id": "戦闘",
+      "label": "戦闘",
+      "aliases": [],
+      "category": "crime"
+    },
+    {
+      "id": "避難",
+      "label": "避難",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "小幅な値動き",
+      "label": "小幅な値動き",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "利回りが上昇",
+      "label": "利回りが上昇",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "到達",
+      "label": "到達",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "指標となる",
+      "label": "指標となる",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "上昇",
+      "label": "上昇",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "職位",
+      "label": "職位",
+      "aliases": [],
+      "category": "position"
+    },
+    {
+      "id": "計画",
+      "label": "計画",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "確認",
+      "label": "確認",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "位置",
+      "label": "位置",
+      "aliases": [],
+      "category": "position"
+    },
+    {
+      "id": "試算",
+      "label": "試算",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "交付予定",
+      "label": "交付予定",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "総額",
+      "label": "総額",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "出場",
+      "label": "出場",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "得点",
+      "label": "得点",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "貢献",
+      "label": "貢献",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "連続",
+      "label": "連続",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "返還",
+      "label": "返還",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "名称",
+      "label": "名称",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "記念",
+      "label": "記念",
+      "aliases": [],
+      "category": "event"
+    },
+    {
+      "id": "来日",
+      "label": "来日",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "最終ラウンド",
+      "label": "最終ラウンド",
+      "aliases": [],
+      "category": "event"
+    },
+    {
+      "id": "成績",
+      "label": "成績",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "スコア",
+      "label": "スコア",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "死傷",
+      "label": "死傷",
+      "aliases": [],
+      "category": "event"
+    },
+    {
+      "id": "疑い",
+      "label": "疑い",
+      "aliases": [],
+      "category": "crime"
+    },
+    {
+      "id": "上昇予想",
+      "label": "上昇予想",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "値下がり",
+      "label": "値下がり",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "思惑",
+      "label": "思惑",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "披露",
+      "label": "披露",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "期待を示す",
+      "label": "期待を示す",
+      "aliases": [],
+      "category": "diplomacy"
+    },
+    {
+      "id": "支出する方針",
+      "label": "支出する方針",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "支出元",
+      "label": "支出元",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "強調",
+      "label": "強調",
+      "aliases": [],
+      "category": "diplomacy"
+    },
+    {
+      "id": "取り組む",
+      "label": "取り組む",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "拉致",
+      "label": "拉致",
+      "aliases": [],
+      "category": "crime"
+    },
+    {
+      "id": "母親",
+      "label": "母親",
+      "aliases": [],
+      "category": "position"
+    },
+    {
+      "id": "強める",
+      "label": "強める",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "求める",
+      "label": "求める",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "議論",
+      "label": "議論",
+      "aliases": [],
+      "category": "diplomacy"
+    },
+    {
+      "id": "意見交換",
+      "label": "意見交換",
+      "aliases": [],
+      "category": "diplomacy"
+    },
+    {
+      "id": "人口",
+      "label": "人口",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "人口減少",
+      "label": "人口減少",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "出生数",
+      "label": "出生数",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "少子高齢化",
+      "label": "少子高齢化",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "収まりつつある",
+      "label": "収まりつつある",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "延焼",
+      "label": "延焼",
+      "aliases": [],
+      "category": "event"
+    },
+    {
+      "id": "評価",
+      "label": "評価",
+      "aliases": [],
+      "category": "diplomacy"
+    },
+    {
+      "id": "運転見合わせ",
+      "label": "運転見合わせ",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "遅れ",
+      "label": "遅れ",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "焼失面積",
+      "label": "焼失面積",
+      "aliases": [],
+      "category": "event"
+    },
+    {
+      "id": "鎮火",
+      "label": "鎮火",
+      "aliases": [],
+      "category": "event"
+    },
+    {
+      "id": "解除",
+      "label": "解除",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "放送",
+      "label": "放送",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "動静",
+      "label": "動静",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "伝達",
+      "label": "伝達",
+      "aliases": [],
+      "category": "diplomacy"
+    },
+    {
+      "id": "インターネット通信が制限",
+      "label": "インターネット通信が制限",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "合意",
+      "label": "合意",
+      "aliases": [],
+      "category": "diplomacy"
+    },
+    {
+      "id": "実効支配",
+      "label": "実効支配",
+      "aliases": [],
+      "category": "crime"
+    },
+    {
+      "id": "掌握",
+      "label": "掌握",
+      "aliases": [],
+      "category": "crime"
+    },
+    {
+      "id": "検討",
+      "label": "検討",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "目的",
+      "label": "目的",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "壮行会",
+      "label": "壮行会",
+      "aliases": [],
+      "category": "event"
+    },
+    {
+      "id": "決意を話した",
+      "label": "決意を話した",
+      "aliases": [],
+      "category": "diplomacy"
+    },
+    {
+      "id": "臨む",
+      "label": "臨む",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "判断",
+      "label": "判断",
+      "aliases": [],
+      "category": "action"
+    },
+    {
+      "id": "生産",
+      "label": "生産",
+      "aliases": [],
+      "category": "business"
+    },
+    {
+      "id": "攻撃",
+      "label": "攻撃",
+      "aliases": [
+        "pred_72b94328",
+        "pred_fe0d7a79"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "占領",
+      "label": "占領",
+      "aliases": [
+        "pred_2f9adf3c"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "爆破",
+      "label": "爆破",
+      "aliases": [
+        "pred_b7a83b3b"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "侵攻",
+      "label": "侵攻",
+      "aliases": [
+        "pred_74d863c4"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "撤退",
+      "label": "撤退",
+      "aliases": [
+        "pred_da25f48e"
+      ],
+      "category": "action"
+    },
+    {
+      "id": "停戦",
+      "label": "停戦",
+      "aliases": [
+        "pred_59af8864"
+      ],
+      "category": "diplomacy"
+    },
+    {
+      "id": "交渉",
+      "label": "交渉",
+      "aliases": [
+        "pred_4b857caf"
+      ],
+      "category": "diplomacy"
+    },
+    {
+      "id": "制裁",
+      "label": "制裁",
+      "aliases": [
+        "pred_507f920e"
+      ],
+      "category": "diplomacy"
+    },
+    {
+      "id": "支援",
+      "label": "支援",
+      "aliases": [
+        "pred_21901b16"
+      ],
+      "category": "diplomacy"
+    },
+    {
+      "id": "協定",
+      "label": "協定",
+      "aliases": [
+        "pred_819e4d6b"
+      ],
+      "category": "diplomacy"
+    },
+    {
+      "id": "調印",
+      "label": "調印",
+      "aliases": [
+        "pred_6132a361"
+      ],
+      "category": "diplomacy"
+    },
+    {
+      "id": "破棄",
+      "label": "破棄",
+      "aliases": [
+        "pred_ecff77a8"
+      ],
+      "category": "diplomacy"
+    },
+    {
+      "id": "承認",
+      "label": "承認",
+      "aliases": [
+        "pred_e38bddc9"
+      ],
+      "category": "diplomacy"
+    },
+    {
+      "id": "反対",
+      "label": "反対",
+      "aliases": [
+        "pred_dbbbd8b0"
+      ],
+      "category": "diplomacy"
+    },
+    {
+      "id": "抗議",
+      "label": "抗議",
+      "aliases": [
+        "pred_5e150241"
+      ],
+      "category": "diplomacy"
+    },
+    {
+      "id": "逮捕",
+      "label": "逮捕",
+      "aliases": [
+        "pred_4c7082b6"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "拘留",
+      "label": "拘留",
+      "aliases": [
+        "pred_d188f0b7"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "裁判",
+      "label": "裁判",
+      "aliases": [
+        "pred_fb96848b"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "判決",
+      "label": "判決",
+      "aliases": [
+        "pred_d0efa013"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "起訴",
+      "label": "起訴",
+      "aliases": [
+        "pred_71fe3dec"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "収監",
+      "label": "収監",
+      "aliases": [
+        "pred_8e62f948"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "処刑",
+      "label": "処刑",
+      "aliases": [
+        "pred_bc01aa59"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "自爆",
+      "label": "自爆",
+      "aliases": [
+        "pred_b9977aa0"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "人質",
+      "label": "人質",
+      "aliases": [
+        "pred_69b70edd"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "脅迫",
+      "label": "脅迫",
+      "aliases": [
+        "pred_b93e79c1"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "破壊",
+      "label": "破壊",
+      "aliases": [
+        "pred_33421edf"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "略奪",
+      "label": "略奪",
+      "aliases": [
+        "pred_ea034d0a"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "放火",
+      "label": "放火",
+      "aliases": [
+        "pred_a6ff693e"
+      ],
+      "category": "crime"
+    },
+    {
+      "id": "負傷",
+      "label": "負傷",
+      "aliases": [
+        "pred_d9d51c58"
+      ],
+      "category": "other"
+    },
+    {
+      "id": "死亡",
+      "label": "死亡",
+      "aliases": [
+        "pred_ce1da3c9"
+      ],
+      "category": "other"
+    },
+    {
+      "id": "避難所",
+      "label": "避難所",
+      "aliases": [
+        "pred_6d489aa9"
+      ],
+      "category": "other"
+    },
+    {
+      "id": "被災",
+      "label": "被災",
+      "aliases": [
+        "pred_9c19a7ce"
+      ],
+      "category": "disaster"
+    },
+    {
+      "id": "被爆",
+      "label": "被爆",
+      "aliases": [
+        "pred_51821b20"
+      ],
+      "category": "disaster"
+    },
+    {
+      "id": "被災地",
+      "label": "被災地",
+      "aliases": [
+        "pred_c9d6fb34"
+      ],
+      "category": "disaster"
+    },
+    {
+      "id": "被爆地",
+      "label": "被爆地",
+      "aliases": [
+        "pred_d3325454"
+      ],
+      "category": "disaster"
+    },
+    {
+      "id": "被爆者",
+      "label": "被爆者",
+      "aliases": [
+        "pred_454d5cd5"
+      ],
+      "category": "disaster"
+    },
+    {
+      "id": "被災者",
+      "label": "被災者",
+      "aliases": [
+        "pred_72441c77"
+      ],
+      "category": "disaster"
+    },
+    {
+      "id": "被爆者支援",
+      "label": "被爆者支援",
+      "aliases": [
+        "pred_0e9b297e"
+      ],
+      "category": "disaster"
+    },
+    {
+      "id": "被災地支援",
+      "label": "被災地支援",
+      "aliases": [
+        "pred_74e8a57c"
+      ],
+      "category": "disaster"
+    },
+    {
+      "id": "被爆地支援",
+      "label": "被爆地支援",
+      "aliases": [
+        "pred_69e7f869"
+      ],
+      "category": "disaster"
+    },
+    {
+      "id": "被災者支援",
+      "label": "被災者支援",
+      "aliases": [
+        "pred_8e1b944f"
+      ],
+      "category": "disaster"
+    },
+    {
+      "id": "pred_e1199472",
+      "label": "pred_e1199472",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_2cadce94",
+      "label": "pred_2cadce94",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_b2aa8812",
+      "label": "pred_b2aa8812",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_ff113c15",
+      "label": "pred_ff113c15",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_7cd16a5d",
+      "label": "pred_7cd16a5d",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_f1a8bea1",
+      "label": "pred_f1a8bea1",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_cd47fac3",
+      "label": "pred_cd47fac3",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_ef2e7cf3",
+      "label": "pred_ef2e7cf3",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_986ac57d",
+      "label": "pred_986ac57d",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_c4c88f3e",
+      "label": "pred_c4c88f3e",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_e3efaf32",
+      "label": "pred_e3efaf32",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_17a41937",
+      "label": "pred_17a41937",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_9aea786f",
+      "label": "pred_9aea786f",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_e2ec7f67",
+      "label": "pred_e2ec7f67",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_2a7357fe",
+      "label": "pred_2a7357fe",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_8a261317",
+      "label": "pred_8a261317",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_08c139fe",
+      "label": "pred_08c139fe",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_be5a8773",
+      "label": "pred_be5a8773",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_643bb060",
+      "label": "pred_643bb060",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_4ec52058",
+      "label": "pred_4ec52058",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_c93ac909",
+      "label": "pred_c93ac909",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_eb80b6c7",
+      "label": "pred_eb80b6c7",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_efcb3f88",
+      "label": "pred_efcb3f88",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_26240cdc",
+      "label": "pred_26240cdc",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_9d7e92b1",
+      "label": "pred_9d7e92b1",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_4f64c69f",
+      "label": "pred_4f64c69f",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_f251eebe",
+      "label": "pred_f251eebe",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_fa1567d5",
+      "label": "pred_fa1567d5",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_6ad7c24e",
+      "label": "pred_6ad7c24e",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_187c1b3c",
+      "label": "pred_187c1b3c",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_37478087",
+      "label": "pred_37478087",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_df8c91c6",
+      "label": "pred_df8c91c6",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_a5ff9cbe",
+      "label": "pred_a5ff9cbe",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_0c8bb0fc",
+      "label": "pred_0c8bb0fc",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_bc3482c2",
+      "label": "pred_bc3482c2",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_9d239b58",
+      "label": "pred_9d239b58",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_2be78dac",
+      "label": "pred_2be78dac",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_9632493b",
+      "label": "pred_9632493b",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_d4d2a668",
+      "label": "pred_d4d2a668",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_c660f543",
+      "label": "pred_c660f543",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_6dcbdc3f",
+      "label": "pred_6dcbdc3f",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_acc17ba9",
+      "label": "pred_acc17ba9",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_454a8c85",
+      "label": "pred_454a8c85",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_cc03b39d",
+      "label": "pred_cc03b39d",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_c2c6c122",
+      "label": "pred_c2c6c122",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_bd96faa4",
+      "label": "pred_bd96faa4",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_7faaca39",
+      "label": "pred_7faaca39",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_2d92531b",
+      "label": "pred_2d92531b",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_d581e92b",
+      "label": "pred_d581e92b",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_c70d256f",
+      "label": "pred_c70d256f",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_9a179556",
+      "label": "pred_9a179556",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_6745a8f3",
+      "label": "pred_6745a8f3",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_3f6bb457",
+      "label": "pred_3f6bb457",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_14806513",
+      "label": "pred_14806513",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_65c8e3ba",
+      "label": "pred_65c8e3ba",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_c72170d5",
+      "label": "pred_c72170d5",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_a8213365",
+      "label": "pred_a8213365",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_4d98970a",
+      "label": "pred_4d98970a",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_28a9c2b9",
+      "label": "pred_28a9c2b9",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_11568814",
+      "label": "pred_11568814",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_0b97eac7",
+      "label": "pred_0b97eac7",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_47ba467c",
+      "label": "pred_47ba467c",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_335cde0c",
+      "label": "pred_335cde0c",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_e6050b83",
+      "label": "pred_e6050b83",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_8a362709",
+      "label": "pred_8a362709",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_f69c237a",
+      "label": "pred_f69c237a",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_cc49d62e",
+      "label": "pred_cc49d62e",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_891058f8",
+      "label": "pred_891058f8",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_12e6d299",
+      "label": "pred_12e6d299",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_33a4b2f6",
+      "label": "pred_33a4b2f6",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_2c388760",
+      "label": "pred_2c388760",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_7310cd7a",
+      "label": "pred_7310cd7a",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_92dee61e",
+      "label": "pred_92dee61e",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_97eaeacf",
+      "label": "pred_97eaeacf",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_76808c28",
+      "label": "pred_76808c28",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_73782aab",
+      "label": "pred_73782aab",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_84638e15",
+      "label": "pred_84638e15",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_f71a073c",
+      "label": "pred_f71a073c",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_38d837fa",
+      "label": "pred_38d837fa",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_77050822",
+      "label": "pred_77050822",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "決定",
+      "label": "決定",
+      "aliases": [
+        "pred_4628d167",
+        "pred_74bf7dd3",
+        "pred_90b7995d",
+        "pred_361e777d",
+        "pred_2e0c6eb9",
+        "pred_d92a0ec0",
+        "pred_5a3e221a",
+        "pred_7c4d3c60",
+        "pred_011ad602",
+        "pred_08b55fea",
+        "pred_e29693c1",
+        "pred_389abc23",
+        "pred_16dd5c69",
+        "pred_e9f445da",
+        "pred_3c3f36a7",
+        "pred_c7d98e07",
+        "pred_cd4ed5e6",
+        "pred_4c298237",
+        "pred_aeac74f1",
+        "pred_823da1c4",
+        "pred_364a7f61"
+      ],
+      "category": "event"
+    },
+    {
+      "id": "発足",
+      "label": "発足",
+      "aliases": [
+        "pred_fa68eb65",
+        "pred_fa77937b",
+        "pred_8218a07f",
+        "pred_5560c794",
+        "pred_0a9bdf26",
+        "pred_8bd677f3",
+        "pred_a27870da",
+        "pred_57e7044b",
+        "pred_f49f7837",
+        "pred_095e938e",
+        "pred_a1ab0aa6",
+        "pred_4c07dade",
+        "pred_f46679e7"
+      ],
+      "category": "business"
+    },
+    {
+      "id": "pred_af92ec38",
+      "label": "pred_af92ec38",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_ca6cada0",
+      "label": "pred_ca6cada0",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_26be7e20",
+      "label": "pred_26be7e20",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_0792e7b8",
+      "label": "pred_0792e7b8",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_56c873b6",
+      "label": "pred_56c873b6",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_1dd5f1f4",
+      "label": "pred_1dd5f1f4",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_99d3750a",
+      "label": "pred_99d3750a",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_72681d26",
+      "label": "pred_72681d26",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_572c18c5",
+      "label": "pred_572c18c5",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_5cd4f37d",
+      "label": "pred_5cd4f37d",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_56ed9a1a",
+      "label": "pred_56ed9a1a",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_21eda12c",
+      "label": "pred_21eda12c",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_9aba2917",
+      "label": "pred_9aba2917",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_569997d1",
+      "label": "pred_569997d1",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_be41a8cb",
+      "label": "pred_be41a8cb",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_ef50a8c0",
+      "label": "pred_ef50a8c0",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_def5de77",
+      "label": "pred_def5de77",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_2b4fdf3a",
+      "label": "pred_2b4fdf3a",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_1897daf0",
+      "label": "pred_1897daf0",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_9fc1bba4",
+      "label": "pred_9fc1bba4",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_aa35622d",
+      "label": "pred_aa35622d",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_ebd53728",
+      "label": "pred_ebd53728",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_3815bfd4",
+      "label": "pred_3815bfd4",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_8914f4ee",
+      "label": "pred_8914f4ee",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_460623a6",
+      "label": "pred_460623a6",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_dfde827d",
+      "label": "pred_dfde827d",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_25c23411",
+      "label": "pred_25c23411",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_119b11a2",
+      "label": "pred_119b11a2",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_dbd4757a",
+      "label": "pred_dbd4757a",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_cdccd6a1",
+      "label": "pred_cdccd6a1",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_6f9164b8",
+      "label": "pred_6f9164b8",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_daa72aa4",
+      "label": "pred_daa72aa4",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_9523f5d5",
+      "label": "pred_9523f5d5",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_1b759816",
+      "label": "pred_1b759816",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_7de7649d",
+      "label": "pred_7de7649d",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_7932d8c4",
+      "label": "pred_7932d8c4",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_858030bf",
+      "label": "pred_858030bf",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_c8e490f8",
+      "label": "pred_c8e490f8",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_eabceebc",
+      "label": "pred_eabceebc",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_3615cdad",
+      "label": "pred_3615cdad",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_8f24d759",
+      "label": "pred_8f24d759",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_fa41ed62",
+      "label": "pred_fa41ed62",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_6ebac282",
+      "label": "pred_6ebac282",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_525e1e95",
+      "label": "pred_525e1e95",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_9f71f14c",
+      "label": "pred_9f71f14c",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_13e34555",
+      "label": "pred_13e34555",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_feed565e",
+      "label": "pred_feed565e",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_fff3f59e",
+      "label": "pred_fff3f59e",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_c7887a92",
+      "label": "pred_c7887a92",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_bdac2a0f",
+      "label": "pred_bdac2a0f",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_0e0abb76",
+      "label": "pred_0e0abb76",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_97a5723c",
+      "label": "pred_97a5723c",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_043d8863",
+      "label": "pred_043d8863",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_93bdf5f2",
+      "label": "pred_93bdf5f2",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_0bad4c9e",
+      "label": "pred_0bad4c9e",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_84353e0d",
+      "label": "pred_84353e0d",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_fbcc6e3e",
+      "label": "pred_fbcc6e3e",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_7cc1efeb",
+      "label": "pred_7cc1efeb",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_ed48196a",
+      "label": "pred_ed48196a",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_ccc07335",
+      "label": "pred_ccc07335",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_abc53050",
+      "label": "pred_abc53050",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_53c4995d",
+      "label": "pred_53c4995d",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_af689cd3",
+      "label": "pred_af689cd3",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_73ce60aa",
+      "label": "pred_73ce60aa",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_bd9abad6",
+      "label": "pred_bd9abad6",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_30119b65",
+      "label": "pred_30119b65",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_a9db3a02",
+      "label": "pred_a9db3a02",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_ae284f04",
+      "label": "pred_ae284f04",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_e5ca523b",
+      "label": "pred_e5ca523b",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_7f649584",
+      "label": "pred_7f649584",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_b379d5a4",
+      "label": "pred_b379d5a4",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_cdf6fb86",
+      "label": "pred_cdf6fb86",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_946aa46d",
+      "label": "pred_946aa46d",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_dddd8f03",
+      "label": "pred_dddd8f03",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_22fa584d",
+      "label": "pred_22fa584d",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_b896fb43",
+      "label": "pred_b896fb43",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_638bcd3f",
+      "label": "pred_638bcd3f",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_26de11b4",
+      "label": "pred_26de11b4",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_c5468090",
+      "label": "pred_c5468090",
+      "aliases": [],
+      "category": "other"
+    },
+    {
+      "id": "pred_42e1276a",
+      "label": "pred_42e1276a",
+      "aliases": [],
+      "category": "other"
+    }
+  ]
+}

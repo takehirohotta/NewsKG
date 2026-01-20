@@ -1,0 +1,188 @@
+@prefix : <http://example.org/newskg#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+
+# =============================================================================
+# NewsKG Ontology v2 - トリプルベースのニュース知識グラフ
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# エンティティクラス定義
+# -----------------------------------------------------------------------------
+
+:Entity a rdfs:Class ;
+    rdfs:label "エンティティ"@ja ;
+    rdfs:comment "全てのエンティティの基底クラス"@ja .
+
+:Organization a rdfs:Class ;
+    rdfs:subClassOf :Entity ;
+    rdfs:label "組織"@ja ;
+    rdfs:comment "企業、政府機関、政党などの組織"@ja .
+
+:Person a rdfs:Class ;
+    rdfs:subClassOf :Entity ;
+    rdfs:label "人物"@ja ;
+    rdfs:comment "政治家、経営者などの人物"@ja .
+
+:Place a rdfs:Class ;
+    rdfs:subClassOf :Entity ;
+    rdfs:label "場所"@ja ;
+    rdfs:comment "都道府県、都市、国などの場所"@ja .
+
+:Event a rdfs:Class ;
+    rdfs:subClassOf :Entity ;
+    rdfs:label "イベント"@ja ;
+    rdfs:comment "選挙、会議、災害などのイベント"@ja .
+
+# -----------------------------------------------------------------------------
+# ニュース記事クラス
+# -----------------------------------------------------------------------------
+
+:NewsArticle a rdfs:Class ;
+    rdfs:label "ニュース記事"@ja ;
+    rdfs:comment "NHKニュースの記事"@ja .
+
+# -----------------------------------------------------------------------------
+# ニューストリプルクラス（Reification用）
+# -----------------------------------------------------------------------------
+
+:NewsTriple a rdfs:Class ;
+    rdfs:label "ニューストリプル"@ja ;
+    rdfs:comment "ニュースから抽出されたトリプル（主語-述語-目的語）のメタ情報"@ja .
+
+# -----------------------------------------------------------------------------
+# エンティティ基本プロパティ
+# -----------------------------------------------------------------------------
+
+:hasLabel a rdf:Property ;
+    rdfs:domain :Entity ;
+    rdfs:range xsd:string ;
+    rdfs:label "ラベル"@ja ;
+    rdfs:comment "エンティティの表示名"@ja .
+
+:hasAlias a rdf:Property ;
+    rdfs:domain :Entity ;
+    rdfs:range xsd:string ;
+    rdfs:label "別名"@ja ;
+    rdfs:comment "エンティティの別名・略称"@ja .
+
+# -----------------------------------------------------------------------------
+# ニュース記事プロパティ
+# -----------------------------------------------------------------------------
+
+:hasTitle a rdf:Property ;
+    rdfs:domain :NewsArticle ;
+    rdfs:range xsd:string ;
+    rdfs:label "タイトル"@ja .
+
+:hasUrl a rdf:Property ;
+    rdfs:domain :NewsArticle ;
+    rdfs:range xsd:anyURI ;
+    rdfs:label "URL"@ja .
+
+:hasPubDate a rdf:Property ;
+    rdfs:domain :NewsArticle ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "公開日時"@ja .
+
+:hasContent a rdf:Property ;
+    rdfs:domain :NewsArticle ;
+    rdfs:range xsd:string ;
+    rdfs:label "本文"@ja .
+
+# -----------------------------------------------------------------------------
+# ニューストリプルプロパティ（Reification用）
+# -----------------------------------------------------------------------------
+
+:extractedFrom a rdf:Property ;
+    rdfs:domain :NewsTriple ;
+    rdfs:range :NewsArticle ;
+    rdfs:label "抽出元記事"@ja ;
+    rdfs:comment "このトリプルが抽出された記事"@ja .
+
+:extractedAt a rdf:Property ;
+    rdfs:domain :NewsTriple ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "抽出日時"@ja ;
+    rdfs:comment "トリプルが抽出された日時"@ja .
+
+:hasConfidence a rdf:Property ;
+    rdfs:domain :NewsTriple ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "信頼度"@ja ;
+    rdfs:comment "抽出の信頼度 (0.0-1.0)"@ja .
+
+# -----------------------------------------------------------------------------
+# 動的に生成される関係プロパティの基底
+# 実際の関係プロパティ（:rel_就任, :rel_会談 など）は
+# トリプル抽出時に動的に生成されます
+# -----------------------------------------------------------------------------
+
+:RelationProperty a rdfs:Class ;
+    rdfs:subClassOf rdf:Property ;
+    rdfs:label "関係プロパティ"@ja ;
+    rdfs:comment "エンティティ間の関係を表すプロパティの基底クラス"@ja .
+
+# -----------------------------------------------------------------------------
+# 代表的な関係プロパティ（例）
+# これらはプログラムで動的に生成されますが、参考として記載
+# -----------------------------------------------------------------------------
+
+# 役職・所属関係
+:rel_assume_office a :RelationProperty ;
+    rdfs:label "就任"@ja ;
+    rdfs:domain :Person ;
+    rdfs:range :Organization .
+
+:rel_resign a :RelationProperty ;
+    rdfs:label "辞任"@ja ;
+    rdfs:domain :Person ;
+    rdfs:range :Organization .
+
+:rel_belong_to a :RelationProperty ;
+    rdfs:label "所属"@ja ;
+    rdfs:domain :Person ;
+    rdfs:range :Organization .
+
+:rel_represent a :RelationProperty ;
+    rdfs:label "代表"@ja ;
+    rdfs:domain :Person ;
+    rdfs:range :Organization .
+
+# 外交・会談関係
+:rel_meet a :RelationProperty ;
+    rdfs:label "会談"@ja ;
+    rdfs:domain :Person ;
+    rdfs:range :Person .
+
+:rel_visit a :RelationProperty ;
+    rdfs:label "訪問"@ja ;
+    rdfs:domain :Person ;
+    rdfs:range :Place .
+
+# 行動・決定関係
+:rel_announce a :RelationProperty ;
+    rdfs:label "発表"@ja ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:rel_decide a :RelationProperty ;
+    rdfs:label "決定"@ja ;
+    rdfs:domain :Organization ;
+    rdfs:range :Entity .
+
+# イベント関係
+:rel_occur_at a :RelationProperty ;
+    rdfs:label "発生"@ja ;
+    rdfs:domain :Event ;
+    rdfs:range :Place .
+
+:rel_hold_at a :RelationProperty ;
+    rdfs:label "開催"@ja ;
+    rdfs:domain :Event ;
+    rdfs:range :Place .
+

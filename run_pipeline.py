@@ -7,6 +7,7 @@ NewsKG パイプライン実行スクリプト
 使用方法:
     uv run python run_pipeline.py --input articles.json --output output/
     uv run python run_pipeline.py  # デフォルト設定で実行
+    uv run python run_pipeline.py --upload  # Fusekiにアップロード
 """
 
 import argparse
@@ -14,7 +15,8 @@ import sys
 import logging
 from pathlib import Path
 
-from pipeline import PipelineProcessor
+import config
+from pipeline import PipelineProcessor, FusekiUploader
 
 
 def main():
@@ -58,6 +60,26 @@ def main():
         action="store_true",
         help="SHACL検証をスキップ"
     )
+    parser.add_argument(
+        "--upload",
+        action="store_true",
+        help="Fusekiサーバーにアップロード"
+    )
+    parser.add_argument(
+        "--fuseki-endpoint",
+        default=config.FUSEKI_ENDPOINT,
+        help=f"Fusekiサーバーのエンドポイント (デフォルト: {config.FUSEKI_ENDPOINT})"
+    )
+    parser.add_argument(
+        "--fuseki-dataset",
+        default=config.FUSEKI_DATASET,
+        help=f"Fusekiデータセット名 (デフォルト: {config.FUSEKI_DATASET})"
+    )
+    parser.add_argument(
+        "--replace",
+        action="store_true",
+        help="Fusekiの既存データを置換（デフォルトは追加）"
+    )
 
     args = parser.parse_args()
 
@@ -82,6 +104,11 @@ def main():
     print(f"入力: {args.input}")
     print(f"出力: {args.output}/")
     print(f"SHACL検証: {'無効' if args.no_validate else '有効'}")
+    print(f"Fusekiアップロード: {'有効' if args.upload else '無効'}")
+    if args.upload:
+        print(f"  エンドポイント: {args.fuseki_endpoint}")
+        print(f"  データセット: {args.fuseki_dataset}")
+        print(f"  モード: {'置換' if args.replace else '追加'}")
     print("-" * 60)
 
     # パイプライン実行
@@ -131,6 +158,45 @@ def main():
     else:
         print("  ✗ 検証エラーがあります")
         print(validation["message"][:500])
+
+    # Fusekiアップロード
+    if args.upload:
+        print(f"\n" + "-" * 60)
+        print("Fusekiアップロード")
+        print("-" * 60)
+
+        uploader = FusekiUploader(
+            endpoint=args.fuseki_endpoint,
+            dataset=args.fuseki_dataset
+        )
+
+        # 接続確認
+        if not uploader.check_connection():
+            print(f"  ✗ Fusekiサーバーに接続できません: {args.fuseki_endpoint}")
+            print("    サーバーが起動しているか確認してください。")
+        else:
+            print(f"  ✓ Fusekiサーバーに接続しました")
+
+            # アップロード実行
+            rdf_path = result["output_files"]["rdf_latest"]
+            upload_result = uploader.upload_file(
+                rdf_path,
+                replace=args.replace
+            )
+
+            if upload_result["success"]:
+                print(f"  ✓ アップロード成功")
+
+                # 統計情報を取得
+                stats = uploader.get_statistics()
+                print(f"  トリプル数: {stats['total_triples']}")
+
+                if stats["class_counts"]:
+                    print(f"  クラス別インスタンス数:")
+                    for cls, count in list(stats["class_counts"].items())[:10]:
+                        print(f"    {cls}: {count}")
+            else:
+                print(f"  ✗ アップロード失敗: {upload_result.get('error', '不明なエラー')}")
 
     print("\n" + "=" * 60)
     print("完了")

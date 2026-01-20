@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Physics Test</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
+    <style>
+        #cy { width: 800px; height: 600px; border: 1px solid #ccc; }
+        #status { margin: 10px 0; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h2>Physics Simulation Test</h2>
+    <div id="status">Status: Loading...</div>
+    <div id="cy"></div>
+    
+    <script>
+        const cy = cytoscape({
+            container: document.getElementById('cy'),
+            elements: [
+                { data: { id: 'a', label: 'Node A' } },
+                { data: { id: 'b', label: 'Node B' } },
+                { data: { id: 'c', label: 'Node C' } },
+                { data: { id: 'd', label: 'Node D' } },
+                { data: { source: 'a', target: 'b' } },
+                { data: { source: 'b', target: 'c' } },
+                { data: { source: 'c', target: 'd' } },
+                { data: { source: 'd', target: 'a' } },
+            ],
+            style: [
+                { selector: 'node', style: { 
+                    'label': 'data(label)', 
+                    'background-color': '#4a90d9',
+                    'width': 40,
+                    'height': 40
+                }},
+                { selector: 'edge', style: { 
+                    'width': 2, 
+                    'line-color': '#666',
+                    'curve-style': 'bezier'
+                }}
+            ]
+        });
+
+        // 初期位置をランダムに
+        cy.nodes().forEach(node => {
+            node.position({
+                x: 200 + Math.random() * 400,
+                y: 150 + Math.random() * 300
+            });
+            node.data('vx', 0);
+            node.data('vy', 0);
+            node.data('dragging', false);
+        });
+
+        // ドラッグイベント
+        cy.on('grab', 'node', (evt) => {
+            evt.target.data('dragging', true);
+            console.log('Grab:', evt.target.id());
+        });
+
+        cy.on('free', 'node', (evt) => {
+            evt.target.data('dragging', false);
+            evt.target.data('vx', 0);
+            evt.target.data('vy', 0);
+            console.log('Free:', evt.target.id());
+        });
+
+        // 物理パラメータ
+        const physics = {
+            repulsion: 3000,
+            attraction: 0.02,
+            damping: 0.85,
+            centerGravity: 0.03,
+        };
+
+        let frameCount = 0;
+
+        // シミュレーションループ
+        function simulate() {
+            const nodes = cy.nodes();
+            const centerX = 400;
+            const centerY = 300;
+
+            nodes.forEach(node => {
+                if (node.data('dragging')) return;
+
+                let fx = 0, fy = 0;
+                const pos = node.position();
+
+                // 反発力
+                nodes.forEach(other => {
+                    if (node.id() === other.id()) return;
+                    const otherPos = other.position();
+                    const dx = pos.x - otherPos.x;
+                    const dy = pos.y - otherPos.y;
+                    const distSq = dx * dx + dy * dy;
+                    const dist = Math.sqrt(distSq) || 1;
+                    const force = physics.repulsion / distSq;
+                    fx += (dx / dist) * force;
+                    fy += (dy / dist) * force;
+                });
+
+                // 引力（エッジ）
+                node.connectedEdges().forEach(edge => {
+                    const other = edge.source().id() === node.id() ? edge.target() : edge.source();
+                    const otherPos = other.position();
+                    const dx = otherPos.x - pos.x;
+                    const dy = otherPos.y - pos.y;
+                    fx += dx * physics.attraction;
+                    fy += dy * physics.attraction;
+                });
+
+                // 中心引力
+                fx += (centerX - pos.x) * physics.centerGravity;
+                fy += (centerY - pos.y) * physics.centerGravity;
+
+                // 速度更新
+                let vx = (node.data('vx') || 0) + fx;
+                let vy = (node.data('vy') || 0) + fy;
+                vx *= physics.damping;
+                vy *= physics.damping;
+
+                node.data('vx', vx);
+                node.data('vy', vy);
+            });
+
+            // 位置更新
+            nodes.forEach(node => {
+                if (node.data('dragging')) return;
+                const vx = node.data('vx') || 0;
+                const vy = node.data('vy') || 0;
+                const pos = node.position();
+                node.position({
+                    x: pos.x + vx,
+                    y: pos.y + vy
+                });
+            });
+
+            frameCount++;
+            if (frameCount % 30 === 0) {
+                const nodeA = cy.getElementById('a');
+                document.getElementById('status').textContent = 
+                    `Frame: ${frameCount} | Node A pos: (${nodeA.position().x.toFixed(1)}, ${nodeA.position().y.toFixed(1)}) | vx: ${(nodeA.data('vx')||0).toFixed(2)}`;
+            }
+
+            requestAnimationFrame(simulate);
+        }
+
+        simulate();
+        console.log('Simulation started');
+    </script>
+</body>
+</html>

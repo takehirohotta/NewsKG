@@ -1,0 +1,5 @@
+"""
+NewsKG Backend API
+
+FastAPIベースのバックエンドサーバー
+"""
